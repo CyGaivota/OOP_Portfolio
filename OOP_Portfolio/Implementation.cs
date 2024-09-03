@@ -9,7 +9,7 @@ namespace OOP_Portfolio
    
 
         public class Linie
-        {
+        {   
             public double Laenge { get; }
 
             public Linie(double laenge)
@@ -26,13 +26,16 @@ namespace OOP_Portfolio
             {
                 Linien = new List<Linie> { new Linie(laenge), new Linie(breite), new Linie(laenge), new Linie(breite) };
             }
-
+        /// <summary>
+        /// Berechnung von Umfang und Flaeche des Rechtecks
+        /// </summary>
+        /// <returns></returns>
             public double Umfang()
             {
                 return 2 * (Linien[0].Laenge + Linien[1].Laenge);
             }
 
-            public double Fläche()
+            public double Flaeche()
             {
                 return Linien[0].Laenge * Linien[1].Laenge;
             }
@@ -41,12 +44,15 @@ namespace OOP_Portfolio
         public class Dreieck
         {
             private List<Linie> Linien { get; }
-
+          
             public Dreieck(double a, double b, double c)
             {
                 Linien = new List<Linie> { new Linie(a), new Linie(b), new Linie(c) };
             }
-
+            /// <summary>
+            /// Berrechnung vom Umfang des Dreiecks
+            /// </summary>
+            /// <returns></returns>
             public double Umfang()
             {
                 double umfang = 0;
@@ -56,10 +62,12 @@ namespace OOP_Portfolio
                 }
                 return umfang;
             }
-
-            public double Fläche()
+            /// <summary>
+            /// Berrechnung der Flaeche des Dreiecks
+            /// </summary>
+            /// <returns></returns>
+            public double Flaeche()
             {
-                // Berechnung der Fläche mit Heronscher Formel
                 double s = Umfang() / 2;
                 double a = Linien[0].Laenge;
                 double b = Linien[1].Laenge;
@@ -72,7 +80,11 @@ namespace OOP_Portfolio
         {
             public double Radius { get; }
             private Linie Linie { get; }
-
+            
+            /// <summary>
+            /// Berrechnung des Radius des kreises
+            /// </summary>
+            /// <param name="radius"></param>
             public Kreis(double radius)
             {
                 Radius = radius;
@@ -83,8 +95,11 @@ namespace OOP_Portfolio
             {
                 return Linie.Laenge;
             }
-
-            public double Fläche()
+            /// <summary>
+            /// Berrechnung der Flaeche des Kreises
+            /// </summary>
+            /// <returns></returns>
+            public double Flaeche()
             {
                 return Math.PI * Radius * Radius;
             }
@@ -95,7 +110,13 @@ namespace OOP_Portfolio
             public List<Rechteck> Rechtecke { get; }
             public List<Dreieck> Dreiecke { get; }
             public List<Kreis> Kreise { get; }
-
+            /// <summary>
+            /// Validierung für Formen 
+            /// </summary>
+            /// <param name="rechtecke"></param>
+            /// <param name="dreiecke"></param>
+            /// <param name="kreise"></param>
+            /// <exception cref="ArgumentException"></exception>
             public FormenBehälter(List<Rechteck> rechtecke, List<Dreieck> dreiecke, List<Kreis> kreise)
             {
                 // Validierung für Rechtecke
@@ -141,25 +162,25 @@ namespace OOP_Portfolio
                 return umfang;
             }
 
-            public double GesamteFläche()
+            public double GesamteFlaeche()
             {
-                double fläche = 0;
+                double flaeche = 0;
                 foreach (var rechteck in Rechtecke)
                 {
-                    fläche += rechteck.Fläche();
+                    flaeche += rechteck.Flaeche();
                 }
 
                 foreach (var dreieck in Dreiecke)
                 {
-                    fläche += dreieck.Fläche();
+                    flaeche += dreieck.Flaeche();
                 }
 
                 foreach (var kreis in Kreise)
                 {
-                    fläche += kreis.Fläche();
+                    flaeche += kreis.Flaeche();
                 }
 
-                return fläche;
+                return flaeche;
             }
         }
     }

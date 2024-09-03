@@ -24,7 +24,7 @@
 
             // Berechnungen ausgeben
             Console.WriteLine($"Gesamter Umfang: {behälter.GesamterUmfang()}");
-            Console.WriteLine($"Gesamte Fläche: {behälter.GesamteFläche()}");
+            Console.WriteLine($"Gesamte Flaeche: {behälter.GesamteFlaeche()}");
         }
     }
 }
